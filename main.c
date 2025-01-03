@@ -105,6 +105,14 @@ static int test()
         return 1;
     }
 
+    printf("key: %s\n", hex_string(key, sizeof(key)));
+
+    err = wc_AesSetKey(&aes, key, sizeof(key), NULL, AES_ENCRYPTION);
+    if (err < 0) {
+        printf("set key, wolfSSL error code: %d", err);
+        return 1;
+    }
+
     printf("iv_1 : %s\n", hex_string(iv_1, sizeof(iv_1)));
 
     err = wc_AesSetIV(&aes, iv_1);
